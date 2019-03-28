@@ -1,0 +1,22 @@
+{
+    "environment": "TEST",
+    "logfile_location": "/logs",
+    "server": "localhost",
+    "server_port": 3002,
+    "UPLOAD_FOLDER_DOCUMENT": "./files/document",
+    "UPLOAD_FOLDER_CSV_DOCUMENT": "./files/csv",
+    "UPLOAD_FOLDER_DEAL_PHOTOS": "./files/dealphotos",
+    "MAIL_SERVER": "auth.smtp.1and1.co.uk', #''smtp.gmail.com",
+    "MAIL_PORT": 587,
+    "MAIL_USE_SSL": "False",
+    "MAIL_USERNAME": "info@jrhousing.co.uk",
+    "MAIL_PASSWORD": "zi27ggrr",
+    "SECRET_KEY": "$up3rcalafrajali$t1c3xpeal1d0shis",
+    "SENDER_EMAIL_ADDRESS": "noreply@jrhousing.co.uk",
+    "auth_client_id": "t3S5tX0h2h5bdbfY4hDSfK314uRzFgXa",
+    "auth_client_secret": "AI4ruTZDCag_h2YlJfK6FNtY4ojhCbiPziDuUB8GBi5mjto77oYd2B6DH6WNT_s4",
+    "auth_api_base_url": "https://jrhousing.eu.auth0.com",
+    "auth_access_token_url": "https://jrhousing.eu.auth0.com/oauth/token",
+    "auth_authorize_url": "https://jrhousing.eu.auth0.com/authorize",
+    "auth_api": "https://jrhousing.eu.auth0.com/api/v2/"
+}

@@ -1,0 +1,28 @@
+{%extends "base.html"%}
+
+
+{%block content%}
+<h2>Send message</h2>
+<fieldset>
+    <legend>Send a message</legend>
+    <form method="post" action="/send_message" class="">
+        <p>
+            <label>To</label>
+            <input type="hidden" name="email_to" value="{{message_to.uuid}}">
+            {{message_to.name}} {{message_to.surname}}
+        </p>
+        <p>
+            <label>From</label>
+            <input type="hidden" name="email_from" value="{{current_user.uuid}}">
+            {{current_user.name}} {{current_user.surname}}
+        </p>
+        <p>
+            <label>Message</label>
+            <textarea rows="10" cols="40" name="message"></textarea>
+        </p>
+        <p>
+            <input type="submit" class="formbutton" value="Send Message"/>
+        </p>
+    </form>
+</fieldset>
+{%endblock%}

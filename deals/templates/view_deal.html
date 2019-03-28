@@ -1,0 +1,194 @@
+{%extends "base.html"%}
+{%block back%}
+<a href="\" class="button">Back</a>
+{%endblock%}
+
+
+{%block content%}
+            <h2>Deal Information</h2>
+<div class="ui top attached tabular menu">
+    <a class="active item" data-tab="first"><i class="icon id card"></i>Details</a>
+    <a class="item" data-tab="second"><i class="icon camera"></i>Photos</a>
+    <a class="item" data-tab="map"><i class="icon globe"></i>Map</a>
+    <a class="item" data-tab="third"><i class="icon edit"></i>Comments</a>
+    <a class="item" data-tab="sourcer"><i class="icon user"></i>Sourcer</a>
+</div>
+<div class="ui bottom attached active tab segment" data-tab="first">
+            {%if photos|length > 0%}
+                <img src="/deal_photo/{{photos[0].filename}}" style="height:200px; float:right;"/>
+            {%endif%}
+            <h3>{{data.title}}<br/>{{data.deal_type.deal_type}}</h3>
+               <br/>
+    <div style="">
+                Purchase Price: ??<br/>
+                Sourcing Fee: {{data.sourcing_fee}}<br/>
+                ROI: {{data.roi}}<br/>
+    </div>
+    <br/><br/>
+                <div><b>Description</b></div>
+                {{data.description}}
+                <br/><br/>
+                <div><b>Key Features</b></div>
+                {{data.key_features}}
+                <br/><br/>
+                <div><b>Comparables</b></div>
+                {{data.comparables}}
+                <br/><br/>
+                <p>
+                    {%if current_user.is_authenticated%}
+                        {%if data.show_address%}
+                        <div><b>Address</b></div>
+                        Address line 1: {{data.address_line_1}}<br/>
+                        Address line 2: {{data.address_line_2}}<br/>
+                        Postcode: {{data.postcode}}<br/>
+                        {%endif%}
+                    {%endif%}
+                    County: {{data.county}}<br/>
+                    City: {{data.city}} <br/>
+                {%if current_user.is_authenticated%}
+               Document: <span><a href="/document/{{data.document}}">{{data.document}}</a></span><br/>
+                Added by: {{data.created_by.name}} {{data.created_by.surname}}
+            {%endif%}
+                </p>
+            </p>
+    {%if current_user.is_authenticated%}
+        <div style="text-align:right;">
+                        <a href="" class="formbutton"><i class="icon email"></i>Email</a>
+        </div>
+    {%endif%}
+ </div>
+<div class="ui bottom attached tab segment" data-tab="second">
+    <div style="text-align:center;">
+        <div id="preview-photo">
+            {%if photos|length > 0%}
+                <img src="/deal_photo/{{photos[0].filename}}" style="height:300px"/>
+            {%endif%}
+        </div>
+                {%for photo in photos%}
+                    <img src="/deal_photo/{{photo.filename}}" style="height:120px;" onclick="showPhoto('/deal_photo/{{photo.filename}}')"/>
+                {%endfor%}
+    </div>
+</div>
+<div class="ui bottom attached tab segment" data-tab="map">
+                        <div><b>Address</b></div>
+                    {%if current_user.is_authenticated%}
+                        {%if data.show_address%}
+                        Address line 1: {{data.address_line_1}}<br/>
+                        Address line 2: {{data.address_line_2}}<br/>
+                        Postcode: {{data.postcode}}<br/>
+                        {%endif%}
+                    {%endif%}
+                    County: {{data.county}}<br/>
+                    City: {{data.city}} <br/>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2489.0775459736883!2d-0.4704188846960372!3d51.40162982625291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487674277314db05%3A0xf5ce9f5044304159!2sLaleham+Rd%2C+Shepperton+TW17+0JQ!5e0!3m2!1sen!2suk!4v1539009786726" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+<div class="ui bottom attached tab segment" data-tab="third">
+        <div class="ui comments">
+          <h3 class="ui dividing header">Comments</h3>
+    {%if current_user.is_authenticated%}
+          <form class="ui reply form" method="post" action="/add_question">
+              <input type="hidden" name="deal_id" value="{{data.uuid}}"/>
+            <div class="field">
+              <textarea name="question" cols="10" rows="2"></textarea>
+            </div>
+            <div>
+                <input type="submit" class="formbutton" value="Add Comment">
+            </div>
+          </form>
+            {%endif%}
+            {%for q in data.deal_question%}
+          <div class="comment">
+            <a class="avatar">
+              <img src="https://semantic-ui.com/images/avatar/small/matt.jpg" style="height:20px;">
+            </a>
+            <div class="content">
+              <a class="author">{{q.asked_by.name}} {{q.asked_by.surname}}</a>
+              <div class="metadata">
+                <span class="date">{{q.asked_date}}</span>
+              </div>
+              <div class="text">
+                <p>{{q.question}}</p>
+              </div>
+              <div class="actions">
+              </div>
+            </div>
+            <div class="comments">
+                            {%for a in q.deal_question_answer%}
+
+              <div class="comment">
+                <a class="avatar">
+                  <img src="https://semantic-ui.com/images/avatar/small/matt.jpg" style="height:20px;">
+                </a>
+                <div class="content">
+                  <a class="author">{{a.answered_by.name}} {{a.answered_by.surname}}</a>
+                  <div class="metadata">
+                    <span class="date">{{a.answered_date}}</span>
+                  </div>
+                  <div class="text">
+                    {{a.answer}}
+                  </div>
+                  <div class="actions">
+                  </div>
+                </div>
+              </div>
+                {%endfor%}
+    {%if current_user.is_authenticated%}
+                  <form class="ui reply form" method="post" action="/add_reply">
+                      <input type="hidden" name="deal_question_id" value="{{q.uuid}}"/>
+                    <div class="field">
+                      <textarea name="answer" cols="10" rows="2"></textarea>
+                    </div>
+                    <div style="text-align:right;">
+                        <input type="submit" class="formbutton" value="Reply to comment">
+                    </div>
+                  </form>
+                {%endif%}
+            </div>
+          </div>
+            {%endfor%}
+        </div>
+</div>
+<div class="ui bottom attached tab segment" data-tab="sourcer">
+        <div><b>Sourcer Details</b></div>
+        <div>Name: Jenkens</div>
+        <div>Total Deals Sourced: 10</div>
+        <div>Total Deals Available: 5</div>
+        <div>Average Review Rating: <div class="ui star rating" data-rating="3"></div>
+
+        <br/><br/>
+        <div><b>Registered</b></div>
+        <div> <i class="icon check"></i> Data Protection</div>
+        <div><i class="icon check"></i> Anti Money Laundering</div>
+        <div><i class="icon check"></i>Property Redress Scheme</div>
+        <div><i class="icon x check"></i>Public Liability Insurance</div>
+        <br/>
+        <div><b>Reviews</b>
+            <div>
+                <div class="ui star rating" data-rating="3"></div>
+                Sale didn't go through
+            </div>
+            <div>
+                <div class="ui star rating" data-rating="4"></div>
+                Made £1000 within 7 days of getting the deal
+            </div>
+        </div>
+
+</div>
+
+<script language="javascript">
+    $(".menu .item").tab();
+    $(document).ready(function(){
+  $('.image-slider').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1
+    });
+});
+function showPhoto(url){
+    $("#preview-photo").html("<img src='"+url+"' style='height:300px;'/>")
+}
+$('.ui.rating').rating();
+</script>
+{%endblock%}

@@ -1,0 +1,14 @@
+{%extends "base.html"%}
+{%block content%}
+<h2>Upload CSV with Deals</h2>
+<a href="/sample_csv">Download sample of CSV</a>
+<form method="post" action="/upload_csv"  enctype="multipart/form-data">
+    <p>
+        <label>File</label>
+        <input type="file" id="file" name="file"/>
+    </p>
+    <p>
+        <input type="submit" value="Upload"/>
+    </p>
+</form>
+{%endblock%}

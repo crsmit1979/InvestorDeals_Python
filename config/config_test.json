@@ -1,0 +1,6 @@
+{
+  "environment": "TEST",
+    "logfile_location": "/logs",
+  "server": "0.0.0.0",
+  "server_port": 3002
+}

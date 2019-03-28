@@ -1,0 +1,163 @@
+<html>
+  <head>
+    {% block head %}
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+      <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+      <script language="JavaScript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.js"></script>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.css" rel="stylesheet"/>
+      <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
+      <link href="{{ url_for('static', filename='styles_custom.css') }}" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="/static/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/static/slick/slick-theme.css"/>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/static/slick/slick.min.js"></script>
+      {% endblock %}
+  </head>
+  <body>
+ <div id="">
+   <span style="float:right">
+      {%if current_user.is_authenticated%}
+           <span class="login-link">
+               Hi <a href="/profile/{{current_user.uuid}}" class="login-link">{{current_user.name}} {{current_user.surname}}</a> |
+           </span>
+      {%endif%}
+      {%if current_user.is_authenticated%}
+        <a href="/logout" class="login-link">Logout</a>
+      {%else%}
+        <a href="/login" class="login-link">Login</a>
+        &nbsp;|&nbsp;
+        <a href="/register" class="login-link">Register</a>
+      {%endif%}
+    </span>
+    <header>
+    	<h1>Property Deal Master</h1>
+    </header>
+    <div id="nav">
+    	<div class="main-menu">
+        <a href="/" class="menu-item">Home</a>
+        <a href="/find_deal" class="menu-item">Find deal</a>
+        <a href="/faq" class="menu-item">F.A.Q</a>
+        <a href="/how_it_works" class="menu-item">How It Works</a>
+        {%if current_user.is_admin%}
+            <a href="/pre_signup" class="menu-item">Pre-Signup</a>
+                <span class="drop menu-item">
+                    <a href="" class="menu-item">Admin<i class="icon caret down"></i></a>
+                    <div class="drop-items">
+                        <a href="/profile" class="menu-item">Users</a>
+                        <a href="/faq_admin" class="menu-item">F.A.Q</a>
+                        <a href="/deal_types" class="menu-item">Deal Types</a>
+                        <a href="/users_signed_up" class="menu-item">Users who signed up</a>
+                    </div>
+                </span>
+        {%endif%}
+        {%if current_user.is_authenticated%}
+                <span class="drop menu-item">
+                    <a href="" class="menu-item">Account<i class="icon caret down"></i></a>
+                    <div class="drop-items">
+                        <a href="/deals/new" class="menu-item">Add new deal</a>
+                        <a href="/pre_signup" class="menu-item">Pre-Signup</a>
+                        <a href="/favourites" class="menu-item">Favourites</a>
+                        <a href="/profile/{{current_user.uuid}}" class="menu-item">Profile</a>
+                        <a href="/deals" class="menu-item">My Deals</a>
+                        <a href="/inbox" class="menu-item">Inbox {%if g.total_messages > 0%}({{g.total_messages}}){%endif%}</a>
+                    </div>
+                </span>
+        {%endif%}
+    </div>
+    {%block topimage%}
+    {%endblock%}
+
+    <div id="body">
+<div class="ui modal confirm-delete">
+  <div class="header">Confirm Delete</div>
+  <div class="content">
+    <p>Are you sure you want to delete the record?</p>
+  </div>
+  <div class="actions">
+    <div class="ui approve button">Yes</div>
+    <div class="ui deny button">No</div>
+  </div>
+</div>
+
+<div class="page-content">
+    {%block sidemenu1%}{%endblock%}
+    {%block content%}
+    {%endblock%}
+</div>
+
+
+    	<div class="clear"></div>
+    </div>
+    <footer class="footer">
+        <div class="ui two column grid">
+            <div class="column">
+            	<h4>Terms of Service</h4>
+                <a href="/terms_conditions">Terms & Conditions</a>
+                <a href="/">Something</a>
+                <a href="/">Something</a>
+            </div>
+            <div class="column">
+                <h4>Our Service</h4>
+                <a href="/">Something</a>
+                <a href="/">Something</a>
+                <a href="/">Something</a>
+            </div>
+        </div>
+            <div id="suggestions" class="panel panel-default">
+                <p>Hello, <br/>
+                    Please let us know if you have any suggestions on what we can do to make this website
+                    better.</p>
+                <p>
+                Leave a suggestion <a href="/suggestion">here</a>
+                </p>
+            </div>
+    </footer>
+</div>
+<style>
+    #suggestions {
+        padding:10px;
+        background-color:white;
+        border-radius:2px;
+        border: 1px solid #dddddd;
+        position:fixed;
+        bottom:20px;
+        right:20px;
+        width:20%;
+    }
+    #suggestions a {
+        color:red;
+    }
+    #suggestions p {
+    color:black;
+    }
+</style>
+    <script language="javascript">
+$(document).ready(function(){
+
+    $("a.confirm-delete").click(function(e){
+            e.stopPropagation();
+            e.preventDefault();
+
+              var self = $(this);
+              $('.ui.modal.confirm-delete')
+              .modal({
+                onDeny    : function(){
+                    $('.ui.modal.confirm-delete').modal("hide");
+                },
+                onApprove : function() {
+                        window.location.href = self.attr("data-action")
+                    $('.ui.modal.confirm-delete').modal("hide");
+                }
+              })
+
+              $('.ui.modal.confirm-delete').modal('hide');
+              $('.ui.modal.confirm-delete').modal('show');
+              return false;
+    });
+});
+
+
+  </script>
+
+  </body>
+</html>

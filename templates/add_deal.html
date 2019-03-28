@@ -1,0 +1,78 @@
+{%extends "base.html"%}
+
+{%block back%}
+<a href="\" class="button">Back</a>
+{%endblock%}
+
+{%block content%}
+<div class="center-form">
+<h2>Add Deal</h2>
+    <a href="/upload_csv">Upload deals using a CSV file</a>
+<fieldset>
+    <legend>Add details about the deal you want to sell</legend>
+        <form method="post" action="/add_deal" method="post" class="" enctype="multipart/form-data">
+            <p>
+                <label>Title:</label>
+                <input type="text" name="title" id="title"/>
+            </p>
+            <p>
+                <label>Description:</label>
+                <textarea rows="10" columns="60" name="description" id="description"></textarea>
+            </p>
+
+            <p>
+                <label>Address Line 1:</label>
+                <input type="text" name="address_line_1" id="address_line_1"/>
+            </p>
+            <p>
+                <label>Address Line 2:</label>
+                <input type="text" name="address_line_2" id="address_line_2"/>
+            </p>
+            <p>
+                <label>Postcode:</label>
+                <input type="text" name="postcode" id="postcode"/>
+            </p>
+            <p>
+                <label>Show Address:</label>
+                <input type="checkbox" name="show_address_details" id="show_address_details"/>
+            </p>
+            <p>
+                <label>County:</label>
+                <input type="text" name="county" id="county"/>
+            </p>
+            <p>
+                <label>City:</label>
+                <input type="text" name="city" id="city"/>
+            </p>
+            <p>
+                <label>Sourcing Fee:</label>
+                <input type="text" name="sourcing_fee" id="sourcing_fee"/>
+            </p>
+            <p>
+                <label>ROI:</label>
+                <input type="text" name="roi" id="roi"/>
+            </p>
+            <p>
+                <label>Deal Type:</label>
+                <select class="deal_type" name="deal_type">
+                        <option value=""></option>
+                    {%for dt in deal_types%}
+                        <option value="{{dt.uuid}}">{{dt.deal_type}}</option>
+                    {%endfor%}
+                </select>
+            </p>
+            <p>
+                <label>Document</label>
+                <input type="file" name="document"/>
+            </p>
+            <p>
+                <label>Photos</label>
+                <input type="file" name="photos" multiple/>
+            </p>
+            <p>
+                <input type="submit" value="Add Deal" class="formbutton">
+            </p>
+        </form>
+</fieldset>
+</div>
+    {%endblock%}

@@ -1,0 +1,40 @@
+{%extends "base.html"%}
+
+{%block content%}
+    <h2>Deals by owner</h2>
+<div class="ui floating labeled icon dropdown button">
+  <i class="filter icon"></i>
+  <span class="text">Action</span>
+  <div class="top-menu">
+    <div class="item">
+      <div class="ui red empty circular label"></div>
+      Delete selected records
+    </div>
+  </div>
+</div>
+<script language="javascript">
+    $('.ui.dropdown')
+  .dropdown()
+;
+</script>
+<table>
+    <thead>
+        <th>Title</th>
+        <th>Created</th>
+        <th>Select</th>
+    </thead>
+    <tbody>
+        {%for deal in data%}
+            <tr>
+                <td>{{deal.title}}</td>
+                <td>{{deal.created}}</td>
+                {% if current_user.uuid == deal.created_by_id or current_user.is_admin == True%}
+                    <td>
+                    <input type="checkbox"/>
+                </td>
+                {%endif%}
+            </tr>
+        {%endfor%}
+    </tbody>
+</table>
+{%endblock%}

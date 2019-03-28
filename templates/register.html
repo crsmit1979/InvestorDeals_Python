@@ -1,0 +1,40 @@
+{%extends "base.html"%}
+
+{%block content%}
+<div class="center-form">
+
+       <h2>Register</h2>
+<fieldset>
+    <legend>Please register your interest by specifying the following details</legend>
+    <form method="post" action="/register">
+        <p>
+            <label>Name</label>
+            <input type="text" name="name"/>
+        </p>
+        <p>
+            <label>Surname</label>
+            <input type="text" name="surname"/>
+        </p>
+        <p>
+            <label>Email</label>
+            <input type="text" name="email"/>
+        </p>
+        <p>
+            <label>Telephone</label>
+            <input type="text" name="telephone"/>
+        </p>
+        <p>
+            <label>Password</label>
+            <input type="password" name="password1"/>
+        </p>
+        <p>
+            <label>Confirm Password</label>
+            <input type="password" name="password2"/>
+        </p>
+        <p>
+            <input type="submit" value="Regsiter" class="formbutton"/>
+        </p>
+    </form>
+</fieldset>
+</div>
+{%endblock%}

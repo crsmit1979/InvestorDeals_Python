@@ -1,0 +1,36 @@
+{%extends "base.html"%}
+
+{%block back%}
+<a href="\" class="button">Back</a>
+{%endblock%}
+
+
+{%block content%}
+<h2>People Signed Up</h2>
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Looking to</th>
+    </thead>
+    {%for inv in data%}
+    <tr>
+        <td>{{inv.name}}</td>
+        <td>{{inv.surname}}</td>
+        <td>{{inv.email}}</td>
+        <td>{%if inv.user_type == "sell"%}
+                Sell Deals
+            {%else%}
+                {%if inv.user_type == "find"%}
+                    Find Deals
+                {%else%}
+                    Find or Sell Deals
+                {%endif%}
+            {%endif%}</td>
+    </tr>
+    {%endfor%}
+</table>
+
+
+{%endblock%}

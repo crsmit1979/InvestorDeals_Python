@@ -1,0 +1,39 @@
+{%extends "base.html"%}
+
+
+{%block content%}
+    <h3>Original message</h3>
+    <table class="">
+    <tr>
+        <td>From:</td>
+        <td>{{message.message_from.name}} {{message.message_from.surname}}</td>
+    </tr>
+    <tr>
+        <td>To:</td>
+        <td>{{message.message_to.name}} {{message.message_to.surname}}</td>
+    </tr>
+    <tr>
+        <td>Date:</td>
+        <td>{{message.created}}</td>
+    </tr>
+    <tr>
+        <td>Message:</td>
+        <td>{{message.message}}</td>
+    </tr>
+</table>
+<h3>Reply:</h3>
+<fieldset>
+    <legend>Please type your message</legend>
+<form method="post" action="/send_message" class="">
+        <input type="hidden" name="email_to" value="{{message.message_from.uuid}}"/>
+        <input type="hidden" name="email_from" value="{{message.message_to.uuid}}"/>
+    <p>
+        <label>Message</label>
+        <textarea rows="10" cols="40" name="message"></textarea>
+    </p>
+    <p>
+            <input type="submit" class="formbutton" value="Send Message"/>
+    </p>
+</form>
+</fieldset>
+{%endblock%}

@@ -1,0 +1,8 @@
+Dear Sir/Mam,
+
+We have had a request that you wanted to register for our site.<br/>
+Please click the following link to activate your account:
+    http://{{server}}:{{port}}/activate/{{userid}}
+
+Kind regards
+The Team at PropertyDeal Master

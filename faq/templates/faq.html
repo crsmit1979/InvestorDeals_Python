@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+{%block content%}
+<h1>Frequently Asked Questions</h1>
+
+<div class="faq-items panel panel-default white-background">
+{%for question in data%}
+    <div class="faq-section">
+      <div class="faq-question">{{question.question}}</div>
+      <div class="faq-answer">{{question.answer}}</div>
+    </div>
+{%endfor%}
+</div>
+{%endblock%}

@@ -1,0 +1,68 @@
+<html>
+  <head>
+    {% block head %}
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+      <script language="JavaScript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.js"></script>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.css" rel="stylesheet"/>
+      <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
+      <link href="{{ url_for('static', filename='styles_custom.css') }}" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="/static/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/static/slick/slick-theme.css"/>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/static/slick/slick.min.js"></script>
+      <script language="javascript" src="/static/knockout-min.js"></script>
+      {% endblock %}
+  </head>
+  <body>
+ <div id="container">
+    <header>
+    	<h1>Property Deal Master</h1>
+    </header>
+    {%block topimage%}
+    {%endblock%}
+    <nav>
+    	<ul>
+         </ul>
+    </nav>
+
+    <div id="body">
+    {%block content%}
+    {%endblock%}
+
+    	<div class="clear"></div>
+    </div>
+
+</div>
+
+    <script language="javascript">
+
+
+$(document).ready(function(){
+
+    $("a.confirm-delete").click(function(e){
+            e.stopPropagation();
+            e.preventDefault();
+
+              var self = $(this);
+              $('.ui.modal.confirm-delete')
+              .modal({
+                onDeny    : function(){
+                    $('.ui.modal.confirm-delete').modal("hide");
+                },
+                onApprove : function() {
+                        window.location.href = self.attr("data-action")
+                    $('.ui.modal.confirm-delete').modal("hide");
+                }
+              })
+
+              $('.ui.modal.confirm-delete').modal('hide');
+              $('.ui.modal.confirm-delete').modal('show');
+              return false;
+    });
+});
+
+
+  </script>
+
+  </body>
+</html>

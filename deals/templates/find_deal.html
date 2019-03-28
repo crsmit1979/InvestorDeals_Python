@@ -1,0 +1,123 @@
+{%extends "base.html"%}
+
+{%block back%}
+<a href="\" class="button">Back</a>
+{%endblock%}
+
+{% set deal_type_id = request.args.get("deal_type_id") %}
+{% set selected_city = request.args.get("city") %}
+{% set selected_county = request.args.get("county") %}
+{% set selected_bedrooms = request.args.get("bedrooms") %}
+
+{%block content%}
+<div class="filter-panel">
+            Filter:
+               <select id="deal_type">
+                   <option value="">Type of Deal</option>
+                    {%for itm in deal_types%}
+                          <option value="{{itm.uuid}}"{%  if deal_type_id|string()==itm.uuid|string() %} selected="selected" {% endif %}>{{itm.deal_type}}</option>
+                    {%endfor%}
+               </select>
+               <select id="city">
+                   <option value="">City</option>
+               {%for city in cities%}
+                   <option value="{{city.city}}"  {%if selected_city|string()==city.city|string()%} selected {%endif%}>{{city.city}}</option>
+               {%endfor%}
+            </select>
+
+               <select id="county">
+                   <option value="">County</option>
+               {%for county in counties%}
+                   <option value="{{county.county}}"  {%if selected_county|string()==county.county|string()%}selected{%endif%}>{{county.county}}</option>
+               {%endfor%}
+            </select>
+               <select id="bedrooms">
+                   <option value="">Bedrooms</option>
+               {%for bedroom in bedrooms%}
+                   <option value="{{bedroom.uuid}}"  {% if selected_bedrooms|string()==bedroom.uuid|string()%} selected {%endif%} >{{bedroom.description}}</option>
+               {%endfor%}
+                </select>
+               <select id="added_in">
+                   <option value="all">Added</option>
+                   <option value="last-day">Last day</option>
+                   <option value="seven-days">Last 7 days</option>
+                   <option value="month">Last month</option>
+                </select>
+        <button onclick="dofilter()" id="filterButton" class="button filter-button">Filter</button>
+</div>
+<div class="record-count-section">
+Total Records: {{records}}
+</div>
+{%set pagesize = 20%}
+{% set pages = (records/pagesize) | round | int %}
+{%if pages>0%}
+<div class="page-counter-section">
+    Pages: |
+    {%for v in range(0,pages)%}
+        <a href="/find_deal?page={{v+1}}&pagesize={{pagesize}}">{{v+1}}</a> |
+    {%endfor%}
+</div>
+{%endif%}
+<style>
+</style>
+    {%for row in data%}
+    <article class="deal-item panel panel-default white-background">
+        <div class="ui two column grid">
+            <div class="four wide column padding10">
+                {%if row.photos|length ==  0%}
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" class="main-image"/>
+                {%else%}
+                    <img src="/deal_photo/{{row.photos[loop.index0].filename}}" class="main-image"/>
+                    <span style="position:absolute; right:10px; top:10px;">
+                        {{row.photos|length}} <i class="icon camera retro"></i>
+                    </span>
+                {%endif%}
+                <div class="date-added-label">Added on: {{time_ago(row.created)}}</div>
+            </div>
+            <div class="twelve wide column deal-details">
+                        <div class="deal-title">
+                                 <a href="/view_deal/{{row.uuid}}" class="button" title="View Details">{{row.title}}</a>
+                        </div>
+                      <div class="deal-type">Deal Type: {{row.deal_type.deal_type}}</div>
+                      <div class="deal-location">{{row.city}}, {{row.county}}</div>
+                <p class="deal-description">
+                    {{row.description}}
+                </p>
+                <div>
+                    <span class="float-right">
+                        <a href="/message/{{row.created_by.uuid}}" class="link-label" title="Contact advertiser"><i class="icon envelope outline"></i> Contact</a>
+                        <a href="/view_deal/{{row.uuid}}" class="link-label" title="View more details"><i class="icon zoom"></i> View Details</a>
+                        <a href="" data-id="{{row.uuid}}" class="link-label" title="Add to favourites" class="add-favourite formbutton"><i class="icon save"></i> Add to Favourites</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </article>
+    {%endfor%}
+
+<script language="javascript">
+    $("#filterButton").click(function(){
+        deal_type = $("#deal_type").val();
+        city = $("#city").val();
+        county = $("#county").val();
+        bedrooms = $("#bedrooms").val();
+        window.location.href="/find_deal?deal_type_id="+deal_type+"&city="+city+"&county="+county+"&bedrooms="+bedrooms;
+    });
+    $("#clearFilterButton").click(function(){
+        window.location.href="/find_deal";
+    });
+    $(".add-favourite").click(function(e){
+        var id = $(this).attr("data-id");
+        url = "/add_favourites/"+id;
+        data="";
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: data,
+          success: function(){
+           }
+        });
+        return false;
+    });
+</script>
+{%endblock%}

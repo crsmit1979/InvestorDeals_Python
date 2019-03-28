@@ -1,0 +1,75 @@
+{%extends "base.html"%}
+
+{%block content%}
+<div class="center-form">
+<fieldset>
+    <form method="post" action="/profile">
+        <input type="hidden" name="uuid" value="{{user.uuid}}"/>
+        <b>Personal Details</b>
+        <p>
+            <label>Name</label>
+            <input type="text" name="name" value="{{user.name}}"/>
+        </p>
+        <p>
+            <label>Surname</label>
+            <input type="text" name="surname" value="{{user.surname}}"/>
+        </p>
+        <p>
+            <label>Email</label>
+            <input type="text" name="email" value="{{user.email}}"/>
+        </p>
+        <p>
+            <label>Telephone</label>
+            <input type="text" name="telephone" value="{{user.telephone}}"/>
+        </p>
+        <br/>
+        <hr/>
+        <br/>
+        <b>Company Details</b>
+        <p>
+            <label>Name</label>
+            <input type="text" name="company_name" value="{{user.company_name}}"/>
+        </p>
+        <p>
+            <label>Addres Line 1</label>
+            <input type="text" name="company_address_line_1" value="{{user.company_address_line_1}}"/>
+        </p>
+        <p>
+            <label>Addres Line 2</label>
+            <input type="text" name="company_address_line_2" value="{{user.company_address_line_2}}"/>
+        </p>
+        <p>
+            <label>City</label>
+            <input type="text" name="company_address_city" value="{{user.company_address_city}}"/>
+        </p>
+        <p>
+            <label>Postcode</label>
+            <input type="text" name="company_address_postcode" value="{{user.company_address_postcode}}"/>
+        </p>
+        <p>
+            <label>Registration Number</label>
+            <input type="text" name="company_registration_number" value="{{user.company_registration_number}}"/>
+        </p>
+        <br/>
+    <hr/>
+    <br/>
+        <b>Registration Details as Sourcer</b>
+        <p>
+            <label>Property Redress Registration Number</label>
+            <input type="text" name="property_redress_number" value="{{user.property_redress_number}}"/>
+        </p>
+        <p>
+            <label>Anti Money Laundering Number</label>
+            <input type="text" name="money_laundering_number" value="{{user.money_laundering_number}}"/>
+        </p>
+        <p>
+            <label>ICO Registration Number</label>
+            <input type="text" name="ico_number" value="{{user.ico_number}}"/>
+        </p>
+        <p>
+            <input type="submit" value="Update" class="formbutton"/>
+        </p>
+    </form>
+</fieldset>
+</div>
+{%endblock%}

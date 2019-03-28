@@ -1,0 +1,72 @@
+{%extends "base.html"%}
+
+{%block back%}
+{%endblock%}
+
+{%block content%}
+<div class="center-form">
+<h2>Edit your deal</h2>
+    <fieldset>
+        <legend>Edit your deal details</legend>
+<form method="post" action="/update_deal">
+        <input type="hidden" readonly name="id" id="id" value="{{data.uuid}}"/>
+    <p>
+        <label>Title:</label>
+        <input type="text" name="title" value="{{data.title}}"/>
+    </p>
+    <p>
+        <label>Description:</label>
+        <textarea  name="description" id="description">{{data.description}}</textarea>
+    </p>
+            <p>
+                <label>Address Line 1:</label>
+                <input type="text" name="address_line_1" id="address_line_1 value={{data.address_line_1}}"/>
+            </p>
+            <p>
+                <label>Address Line 2:</label>
+                <input type="text" name="address_line_2" id="address_line_2" value="{{data.address_line_2}}"/>
+            </p>
+            <p>
+                <label>Postcode:</label>
+                <input type="text" name="postcode" id="postcode" value="{{data.postcode}}"/>
+            </p>
+            <p>
+                <label>Show Address:</label>
+                    <input type="checkbox" name="show_address_details" id="show_address_details" {%if data.show_address_details%}checked{%endif%}/>
+            </p>
+    <p>
+        <label>County:</label>
+        <input type="text" name="county" id="county" value="{{data.county}}"/>
+    </p>
+    <p>
+        <label>City:</label>
+        <input type="text" name="city" id="city" value="{{data.city}}"/>
+    </p>
+    <p>
+        <label>Sourcing Fee:</label>
+        <input type="text" name="sourcing_fee" id="sourcing_fee" value="{{data.sourcing_fee}}"/>
+    </p>
+    <p>
+        <label>ROI:</label>
+        <input type="text" name="roi" id="roi" value="{{data.roi}}"/>
+    </p>
+    <p>
+        <label>Deal type:</label>
+        <select name="deal_type">
+            <option value=""></option>
+            {%for dt in deal_types%}
+            {%if dt.id == data.id%}
+            <option value="{{dt.id}}" selected>{{dt.deal_type}}</option>
+            {%else%}
+            <option value="{{dt.id}}">{{dt.deal_type}}</option>
+            {%endif%}
+            {%endfor%}
+        </select>
+    </p>
+    <p>
+        <input type="submit" value="Update" class="formbutton">
+    </p>
+</form>
+    </fieldset>
+</div>
+{%endblock%}

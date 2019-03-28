@@ -1,0 +1,31 @@
+{%extends "base.html"%}
+
+{%block content%}
+<h2>Inbox</h2>
+<table >
+    <thead>
+        <th>From</th>
+        <th>To</th>
+        <th>Date send</th>
+        <th>Message</th>
+        <th>Reply</th>
+        <th>Delete</th>
+    </thead>
+    <tbody>
+    {%for message in messages%}
+                {%if message.date_read%}
+                    <tr>
+                {%else%}
+        <tr style="font-weight:bold;">
+                {%endif%}
+            <td>{{message.message_from.name}} {{message.message_from.surname}}</td>
+            <td>{{message.message_to.name}} {{message.message_to.surname}}</td>
+            <td>{{message.created}}</td>
+            <td>{{message.message}}</td>
+            <td><a href="/reply_email/{{message.uuid}}">View/Reply</a></td>
+            <td><a href="/delete_email/{{message.uuid}}" class="confirm-delete">Delete</a></td>
+        </tr>
+    {%endfor%}
+    </tbody>
+</table>
+{%endblock%}

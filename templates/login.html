@@ -1,0 +1,26 @@
+{%extends "base.html"%}
+{%block content%}
+<div class="center-form">
+       <h2>Login</h2>
+    <fieldset>
+        <legend>Please provide your login details</legend>
+        <form class="" method="post" action="/login">
+            <p>
+                <label>Email</label>
+                <input type="text" name="email">
+            </p>
+            <p>
+                <label>Password</label>
+                <input type="password" name="password">
+            </p>
+            <p>
+                <a href="/register" class="">Register here if you aren't a member alreadys</a><br/>
+                <a href="/reset_password" class="">Reset password</a>
+            </p>
+            <p>
+                <input  type="submit" class="formbutton" value="Login"/>
+            </p>
+        </form>
+    </fieldset>
+</div>
+{%endblock%}

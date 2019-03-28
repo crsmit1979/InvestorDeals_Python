@@ -1,0 +1,346 @@
+* {
+    box-sizing: border-box;
+   font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:10pt;
+ }
+body {
+    background-color:#f9f9f9;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:10pt;
+    color: #3C4953;
+    margin:0px;
+    padding:0px;
+    min-height:30px;
+}
+.main-menu {
+    margin: 0;
+    padding: 0;
+    background-color: #3c4953;
+}
+
+
+.main-menu a.menu-item {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.main-menu a.menu-item:hover {
+    background-color: #111111;
+}
+.footer {
+    padding:30 20;
+    background-color: rgba(60, 73, 83, 0.05);
+    box-shadow: 0 -2px 0 0 rgba(60, 73, 83, 0.25);
+}
+.footer h4 {
+    font-weight:bold;
+    margin-bottom:10px;
+}
+.footer a {
+    display:block;
+    color: #9DA4A9 !important
+}
+.footer-bottom {
+    background-color:#3c4953;
+    color:white;
+}
+.container {
+    width:90%;
+}
+.panel-default {
+    border-color: #dddddd;
+}
+.panel {
+    margin-bottom: 15px;
+    border: 1px solid #dddddd;
+    border-radius: 0px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    }
+
+.float-right {
+    float:right;
+}
+.date-added-label {
+    font-size:8pt;
+}
+.link-label {
+    font-size:8pt;
+    color:blue;
+}
+
+input, textarea, select {
+    color: #555555;
+    background-color: #ffffff;
+    border: 1px solid #bdbdbd;
+}
+button, .form-button {
+    border: 1px solid #616161;
+    background-color:#358ba5;
+    border-radius:2px;
+    color:rgba(0,0,0,0.6);
+    padding:10 20;
+}
+.padding10 {
+    padding:10px!important;
+}
+.form-button, button:hover {
+    color:white;
+}
+a.form-button:hover {
+    color:white;
+}
+.filter-panel {
+    background-color:#f1f1f1;
+    padding:10px;
+    text-align:center;
+    border: 1px solid rgba(0,0,0,0.5);
+}
+
+.left {
+    text-align: left;
+}
+.center {
+    text-align: center;
+}
+.right {
+    text-align: right;
+}
+
+    .deal-item {
+        padding:10px;
+        margin-bottom:10px;
+    }
+    .deal-item article
+    {
+        background-color:white;
+        margin:5px;
+   }
+    .small-image {
+        width:100%;
+    }
+    .main-image {
+        width:100%;
+    }
+    .deal-item .ui.grid > .column {
+        padding:0px;
+    }
+    .deal-details {
+        padding:10px!important;
+    }
+    .deal-description {
+        font-size:0.8em;
+    }
+    .deal-type {
+    }
+    .deal-location {
+    }
+    .deal-title {
+        font-weight:bold;
+    }
+
+    .page-counter-section {
+        text-align:right;
+    }
+
+table.datatable {
+    border-spacing: 0px;
+    width:100%;
+    background-color:white;
+}
+table.datatable thead th {
+    background: url(https://secure.ii.co.uk/images/gradient-heading-top.gif) repeat-x scroll left bottom #FFFFFF !important;
+    border: 1px solid #E8E8E8 !important;
+}
+table.datatable tr:first-child td {
+    border-top: 1px solid #E8E8E8;
+}
+
+table.datatable tr td, table tr {
+    border-left: none;
+    border-bottom: 1px solid #E8E8E8;
+    border-right: 1px solid #E8E8E8;
+}
+table.datatable tfoot {
+    background: url(https://secure.ii.co.uk/images/gradient-heading-top.gif) repeat-x scroll left bottom #FFFFFF !important;
+}
+table.datatable tfoot tr{
+    min-height:25px;
+}
+table.datatable tbody tr:hover{
+    background-color:#d3d3d347;
+}
+table.datatable tfoot tr td{
+    padding:20px;
+}
+.top-menu {
+    background-color:blue!important;
+    color:white!important;
+}
+.ui.dropdown {
+    color:white!important;
+}
+form .input_label {
+    width:30%;
+    display:inline-block;
+}
+
+.page-content {
+    width:90%;
+    padding:10px;
+    margin:10px auto;
+    min-height:500px;
+}
+
+.record-count-section {
+    text-align:right;
+    margin-right:10px;
+}
+
+.error-item {
+    color:red;
+    font-size:8pt;
+    display:block;
+}
+
+form {
+}
+form p {
+    display: flex;
+    margin:0px;
+    padding:0 0 5px 0;
+}
+
+.form-header-bar {
+    padding:10px;
+    background-color:white; //#efefef38;
+    border: 1px solid #E8E8E8 !important;
+}
+.form-body-bar {
+    padding:10px;
+}
+.form-footer-bar {
+    padding:10px;
+    background-color:#f1f1f1;
+}
+
+.no-data {
+    padding:30px;
+    text-align:center;
+
+}
+
+
+.card {
+    background: #ffffff;
+    box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.1);
+    margin-bottom: 16px;
+    width:auto;
+    }
+.card-title {
+    color: #3C4953;
+    font-size: 1.25rem;
+    font-family: "Source Sans Pro", "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    line-height: 1.33;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.6px;
+  }
+.card-text {
+    color: #636D75;
+    margin-bottom: 24px;
+   }
+.card-top {
+    padding: 16px 24px;
+}
+.card-footer {
+    color: #636D75;
+    padding: 8px 24px;
+    font-size: 0.875rem;
+    border-top: 1px solid #CBCFD1;
+    line-height: 1.52;
+    letter-spacing: 0.2px;
+    }
+
+header {
+    background-color: #358ba5;
+    padding:10px;
+}
+header h1 {
+    font-size:29pt;
+    color:white;
+}
+
+.padded {
+    padding: 20px;
+}
+.gray-background {
+    background-color:#f1f1f1;
+}
+.white-background {
+    background-color:#ffffff;
+}
+.dark-background {
+    background-color:#3c4953;
+}
+
+.login-link, .login-link:hover, .login-link:visited {
+    color:white;
+
+}
+
+.filter-button {
+    padding: 0 20;
+    color:black;
+}
+
+.faq-question {
+    font-weight:bold;
+}
+.faq-answer {
+}
+.faq-section {
+    margin-bottom:20px;
+}
+.faq-items {
+    padding:10px;
+}
+
+.drop {
+    position:relative;
+}
+.drop:hover .drop-items {
+    display:block;
+    visibility: visible;
+}
+.drop-items {
+    z-index:1000;
+    display:none;
+    visibility: hidden;
+    position:absolute;
+    left:0px;
+    top:30px;
+    background-color: #3c4953;
+    color:white;
+    padding:10px;
+}
+.drop-items a.menu-item {
+    white-space: nowrap;
+    padding:3px;
+    display:block;
+    text-align:left;
+}
+
+.hidden {
+    display:none;
+}
+
+.icon.x.icon {
+    color:red;
+}
+.icon.check {
+    color:green;
+}

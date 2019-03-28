@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+
+{%block content%}
+<div class="center-form" style="overflow:auto; width:auto;">
+{%if type=='form'%}
+{{form.render()|safe}}
+{%endif%}
+
+{%if type=='list'%}
+{{form.render_list(rows)|safe}}
+{%endif%}
+</div>
+{%endblock%}

@@ -1,0 +1,36 @@
+{%extends "base.html"%}
+
+{%block back%}
+<a href="\" class="button">Back</a>
+{%endblock%}
+
+
+{%block content%}
+<h2>Users</h2>
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Telephone</th>
+        <th>Disable/Enable</th>
+    </thead>
+    {%for inv in data%}
+    <tr>
+        <td>{{inv.name}}</td>
+        <td>{{inv.surname}}</td>
+        <td>{{inv.email}}</td>
+        <td>{{inv.telephone}}</td>
+        <td>
+            {%if inv.disabled == False%}
+            <a href="/disable_user/{{inv.uuid}}">Disable</a>
+            {%else%}
+            <a href="/enable_user/{{inv.uuid}}">Enable</a>
+            {%endif%}
+        </td>
+    </tr>
+    {%endfor%}
+</table>
+
+
+{%endblock%}

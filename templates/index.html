@@ -1,0 +1,71 @@
+{%extends "base.html"%}
+{%block topimage%}
+{%endblock%}
+
+{%block sidemenu1%}
+{%endblock%}
+{%block content%}
+<section id="content" class="">
+        <div class="white-background padded panel panel-default">
+        <img src="/static/images/image.jpg" alt="Buildings" width="300px" class="float-right"/>
+
+        Problem:
+        <ul>
+            <li>Going to networking events to hopefully meet someone that has got a property deal</li>
+            <li>Always scanning through Facebooks property groups looking for people to sell deals</li>
+            <li>Are to shy to go out and do networking or trying to find deals</li>
+            <li>Deal sourcers have got the deals but having trouble finding and investor that will buy the deal</li>
+            <li>Never know whether the sourcer is correctly registered legally and that they are not a scam?</li>
+        </ul>
+        Solution:
+        <ul>
+            <li>We provide a website where you can advertise your deals so that investors can browse through them
+            <li>Deals are available online in one central place and thus saving you time going out to find deals
+            <li>Investors will give the sourcer a star rating for  their deal and leave a review so you can see they are legit.
+            <li>Automatically get email notifications whenever a property deal becomes available that you might be interested in
+        </ul>
+        </div>
+<br/>
+    <div class="ui three column grid">
+        <div class="column">
+            <div class="white-background panel panel-default">
+                <h4>Options</h4>
+                <ul>
+                    <li><a href="/find_deal">Find deal</a></li>
+                    {%if current_user.is_authenticated%}
+                        <li><a href="/deals/new">Add deal</a></li>
+                        <li><a href="/inbox">Inbox</a></li>
+                        <li><a href="/deals">My Deals</a></li>
+                    {%endif%}
+                        <li class=""><a href="/favourites">Favourites</a></li>
+
+            </ul>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card white-background">
+                <div class="card-top">
+                    <div class="card-title"><i class="icon plus square outline"></i>Advertise Your Deal</div>
+                    <div class="card-text">Do you have a deal that you would like to sell to an investor?
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/deals/new">Start Advertising</a>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card white-background">
+            <div class="card-top">
+                <div class="card-title"><i class="icon search"></i>Looking for a Deal</div>
+                <div class="card-text">Are you looking to buy a property deal from a sourcer?
+                </div>
+            </div>
+            <div class="card-footer">
+                    <a href="/find_deal">Start Searching</a>
+            </div>
+        </div>
+    </div>
+
+</section>
+{%endblock%}

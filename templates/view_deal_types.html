@@ -1,0 +1,22 @@
+{%extends "base.html"%}
+
+{%block back%}
+<a href="\" class="button">Back</a>
+{%endblock%}
+
+
+
+{%block content%}
+<h2>Deal Types</h2>
+<table>
+    <thead>
+        <th>Deal Type</th>
+    </thead>
+    {%for inv in data%}
+    <tr>
+        <td>{{inv.deal_type}}</td>
+    </tr>
+    {%endfor%}
+</table>
+
+{%endblock%}
